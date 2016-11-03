@@ -1,2 +1,33 @@
 ---
-# tasks file for verdaccio
+- name: verdaccio installed
+  npm:
+    name: verdaccio
+    global: yes
+
+- name: verdaccio user created
+  user:
+    name: verdaccio
+
+- name: systemd-unit-file is copied
+  copy:
+    src: systemd-unit-file
+    dest: /etc/systemd/system/verdaccio.service
+
+- name: verdaccio service started
+  service: 
+    name: verdaccio
+    state: started
+    enabled: yes
+
+- name: verdaccio dir created
+  file:
+    path: /home/verdaccio/verdaccio
+    state: directory
+    owner: verdaccio
+
+- name: config deployed
+  template:
+    src: config.j2
+    dest: /home/verdaccio/verdaccio/config.yaml
+    owner: verdaccio
+  notify: restart verdaccio
