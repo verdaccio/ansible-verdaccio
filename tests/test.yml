@@ -1,5 +1,5 @@
 ---
 - hosts: localhost
-  remote_user: root
+
   roles:
-    - verdaccio
+- role_under_test
