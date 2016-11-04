@@ -1,2 +1,4 @@
 ---
-# defaults file for verdaccio
+verdaccio_listen_address: 0.0.0.0
+verdaccio_listen_port: 4873
+

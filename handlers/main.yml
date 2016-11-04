@@ -1,2 +1,5 @@
 ---
-# handlers file for verdaccio
+- name: restart verdaccio
+  service:
+    name: verdaccio
+    state: restarted
