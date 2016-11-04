@@ -68,6 +68,10 @@ script:
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ss -nat'
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ss -nat | grep 4873'
 
+  # Test whether verdaccio could be stopped.
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm systemctl stop verdaccio'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ss -nat'
+
   # Clean up
   - 'sudo docker stop "$(cat ${container_id})"'
 
