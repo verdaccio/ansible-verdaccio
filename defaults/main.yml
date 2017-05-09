@@ -1,4 +1,7 @@
 ---
 verdaccio_listen_address: 0.0.0.0
 verdaccio_listen_port: 4873
-
+verdaccio_authenticate_file_location: ./htpasswd
+verdaccio_authenticate_max_users: +inf
+verdaccio_authenticate_access: $all
+verdaccio_authenticate_publish: $authenticated
