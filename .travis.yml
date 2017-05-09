@@ -64,6 +64,7 @@ script:
     || (echo 'Idempotence test: fail' && exit 1)
 
   # Test whether verdaccio is running.
+  - 'sudo docker exec "$(cat ${container_id})" apt install -y iproute'
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm systemctl status verdaccio'
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ss -nat'
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ss -nat | grep 4873'
@@ -81,4 +82,3 @@ after_failure:
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
-
