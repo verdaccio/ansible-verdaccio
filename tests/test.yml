@@ -6,5 +6,8 @@
       apt: update_cache=yes
       when: ansible_os_family == 'Debian'
 
+  vars:
+    nodejs_install_npm_user: root
+
   roles:
     - role_under_test
