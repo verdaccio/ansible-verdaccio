@@ -1,7 +1,6 @@
-[![Build Status](https://travis-ci.org/030/ansible-verdaccio.svg?branch=master)](https://travis-ci.org/030/ansible-verdaccio)
+# ansible-verdaccio
 
-ansible-verdaccio
-=================
+[![Build Status](https://travis-ci.org/verdaccio/ansible-verdaccio.svg?branch=master)](https://travis-ci.org/verdaccio/ansible-verdaccio)
 
 A brief description of the role goes here.
 
