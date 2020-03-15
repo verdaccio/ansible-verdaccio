@@ -1,2 +1,4 @@
 ---
 - src: geerlingguy.nodejs
+  version: 3.3.1
+  name: geerlingguy.nodejs
