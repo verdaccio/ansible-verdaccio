@@ -4,7 +4,7 @@ services: docker
 
 env:
   global:
-    - ORG_NAME: 030
+    - ORG_NAME: verdaccio
     - ROLE_NAME: verdaccio
   matrix:
     - MOLECULE_DISTRO: centos8

@@ -2,7 +2,7 @@
 - name: verdaccio installed
   npm:
     name: verdaccio
-    global: yes
+    global: true
 
 - name: verdaccio user created
   user:
@@ -14,10 +14,10 @@
     dest: /etc/systemd/system/verdaccio.service
 
 - name: verdaccio service started
-  service: 
+  service:
     name: verdaccio
     state: started
-    enabled: yes
+    enabled: true
 
 - name: verdaccio dir created
   file:
