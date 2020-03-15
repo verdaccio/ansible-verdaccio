@@ -1,39 +1,18 @@
 # ansible-verdaccio
 
-[![Build Status](https://travis-ci.org/verdaccio/ansible-verdaccio.svg?branch=master)](https://travis-ci.org/verdaccio/ansible-verdaccio)
+[![Build Status](https://travis-ci.org/030/ansible-verdaccio.svg?branch=master)](https://travis-ci.org/030/ansible-verdaccio)
+[![GitHub issues](https://img.shields.io/github/issues/030/ansible-verdaccio)](https://github.com/030/ansible-verdaccio/issues)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/030/ansible-verdaccio)
+[![GitHub forks](https://img.shields.io/github/forks/030/ansible-verdaccio)](https://github.com/030/ansible-verdaccio/network)
+[![GitHub stars](https://img.shields.io/github/stars/030/ansible-verdaccio)](https://github.com/030/ansible-verdaccio/stargazers)
+[![GitHub license](https://img.shields.io/github/license/030/ansible-verdaccio)](https://github.com/030/ansible-verdaccio/blob/master/LICENSE)
+![Repository Size](https://img.shields.io/github/repo-size/030/ansible-verdaccio.svg)
+![Contributors](https://img.shields.io/github/contributors/030/ansible-verdaccio.svg)
+![Commit activity](https://img.shields.io/github/commit-activity/m/030/ansible-verdaccio.svg)
+![Last commit](https://img.shields.io/github/last-commit/030/ansible-verdaccio.svg)
+![Release date](https://img.shields.io/github/release-date/030/ansible-verdaccio.svg)
+![Latest Production Release Version](https://img.shields.io/github/release/030/ansible-verdaccio.svg)
+[![Ansible Galaxy](https://img.shields.io/ansible/role/46769.svg)](https://galaxy.ansible.com/030/ansible-verdaccio)
+[![Ansible Role](https://img.shields.io/ansible/role/d/46769)](https://galaxy.ansible.com/030/ansible-verdaccio)
 
-A brief description of the role goes here.
-
-Requirements
-------------
-
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
-
-Role Variables
---------------
-
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
-
-Example Playbook
-----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
-
-License
--------
-
-MIT
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Installs [verdaccio](https://github.com/verdaccio/verdaccio).`
