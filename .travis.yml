@@ -4,6 +4,7 @@ services: docker
 
 env:
   global:
+    - ORG_NAME: 030
     - ROLE_NAME: verdaccio
   matrix:
     - MOLECULE_DISTRO: centos8
@@ -21,8 +22,8 @@ install:
 before_script:
   # Use actual Ansible Galaxy role name for the project directory.
   - cd ../
-  - mv ansible-$ROLE_NAME 030.$ROLE_NAME
-  - cd 030.$ROLE_NAME
+  - mv ansible-$ROLE_NAME $ORG_NAME.$ROLE_NAME
+  - cd $ORG_NAME.$ROLE_NAME
 
 script:
   # Run tests.
