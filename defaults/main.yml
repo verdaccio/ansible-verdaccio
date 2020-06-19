@@ -1,7 +1,36 @@
 ---
+verdaccio_version: ''
+verdaccio_configdir: '/home/verdaccio/verdaccio'
+verdaccio_datadir: '/home/verdaccio/verdaccio'
+verdaccio_web_title: 'Verdaccio'
+verdaccio_web_gravatar: false
+verdaccio_web_sort_packages: asc
 verdaccio_listen_address: 0.0.0.0
 verdaccio_listen_port: 4873
-verdaccio_authenticate_file_location: ./htpasswd
+verdaccio_authenticate_file_location: "{{ verdaccio_datadir }}/htpasswd"
 verdaccio_authenticate_max_users: +inf
-verdaccio_authenticate_access: $all
-verdaccio_authenticate_publish: $authenticated
+
+verdaccio_uplinks:
+  npmjs:
+    url: https://registry.npmjs.org/
+# fontawesome:
+#   url: https://npm.fontawesome.com/
+#   auth:
+#     token: ""
+
+verdaccio_packages:
+  # Default packages using default parameters (bellow)
+  '@*/*':
+  '**':
+# Example with custom parameters:
+# '@fortawesome/*':
+#   proxy:
+#     - fontawesome
+
+verdaccio_packages_defaults:
+  authenticate:
+    access: $all
+    publish: $authenticated
+    unpublish: $authenticated
+  proxy:
+    - npmjs

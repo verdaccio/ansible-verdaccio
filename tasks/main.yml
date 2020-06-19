@@ -2,32 +2,44 @@
 - name: verdaccio installed
   npm:
     name: verdaccio
+    version: "{{ verdaccio_version | default(omit) }}"
     global: true
+  notify: restart verdaccio
 
 - name: verdaccio user created
   user:
     name: verdaccio
 
-- name: systemd-unit-file is copied
-  copy:
-    src: systemd-unit-file
+- name: deploy verdaccio systemd unit
+  template:
+    src: verdaccio.service.j2
     dest: /etc/systemd/system/verdaccio.service
+  notify: systemd daemon-reload
 
-- name: verdaccio service started
-  service:
+- name: verdaccio service enabled
+  systemd:
     name: verdaccio
-    state: started
     enabled: true
 
-- name: verdaccio dir created
+- name: verdaccio directories creation
   file:
-    path: /home/verdaccio/verdaccio
+    path: "{{ item }}"
     state: directory
     owner: verdaccio
+  loop:
+    - "{{ verdaccio_datadir }}"
+    - "{{ verdaccio_configdir }}"
 
 - name: config deployed
   template:
     src: config.j2
-    dest: /home/verdaccio/verdaccio/config.yaml
+    dest: "{{ verdaccio_configdir }}/verdaccio.yml"
     owner: verdaccio
   notify: restart verdaccio
+
+- name: install logrotate script
+  template:
+    src: logrotate.j2
+    dest: /etc/logrotate.d/verdaccio
+    owner: root
+    mode: 0644

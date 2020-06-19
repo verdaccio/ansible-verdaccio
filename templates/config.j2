@@ -7,7 +7,15 @@
 #
 
 # path to a directory with all packages
-storage: ./storage
+storage: {{ verdaccio_datadir }}/storage
+
+# path to a directory with plugins to include
+plugins: {{ verdaccio_datadir }}/plugins
+
+web:
+  title: {{ verdaccio_web_title }}
+  gravatar: {{ verdaccio_web_gravatar }}
+  sort_packages: {{ verdaccio_web_sort_packages }}
 
 auth:
   htpasswd:
@@ -18,30 +26,25 @@ auth:
 
 # a list of other known repositories we can talk to
 uplinks:
-  npmjs:
-    url: https://registry.npmjs.org/
+{% for uplink in verdaccio_uplinks %}
+  {{ uplink }}:
+    url: {{ verdaccio_uplinks[uplink].url }}
+{% if 'auth' in verdaccio_uplinks[uplink] %}
+    auth:
+      type: {{ verdaccio_uplinks[uplink].auth.type | default('bearer') }}
+      token: "{{ verdaccio_uplinks[uplink].auth.token }}"
+{% endif %}
+{% endfor %}
 
 packages:
-  '@*/*':
-    # scoped packages
-    access: $all
-    publish: $authenticated
-    proxy: npmjs
+{% for package in verdaccio_packages %}
+  '{{ package }}':
+    access: {{ verdaccio_packages[package].access | default(verdaccio_packages_defaults.authenticate.access) }}
+    publish: {{ verdaccio_packages[package].publish | default(verdaccio_packages_defaults.authenticate.publish) }}
+    unpublish: {{ verdaccio_packages[package].unpublish | default(verdaccio_packages_defaults.authenticate.unpublish) }}
+    proxy: {{ verdaccio_packages[package].proxy | default(verdaccio_packages_defaults.proxy) }}
 
-  '**':
-    # allow all users (including non-authenticated users) to read and
-    # publish all packages
-    #
-    # you can specify usernames/groupnames (depending on your auth plugin)
-    # and three keywords: "$all", "$anonymous", "$authenticated"
-    access: {{ verdaccio_authenticate_access }}
-
-    # allow all known users to publish packages
-    # (anyone can register by default, remember?)
-    publish: {{ verdaccio_authenticate_publish }}
-
-    # if package is not available locally, proxy requests to 'npmjs' registry
-    proxy: npmjs
+{% endfor %}
 
 # log settings
 logs:

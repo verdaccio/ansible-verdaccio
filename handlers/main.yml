@@ -3,3 +3,7 @@
   service:
     name: verdaccio
     state: restarted
+
+- name: systemd daemon-reload
+  systemd:
+    daemon_reload: true
