@@ -1,0 +1,14 @@
+# {{ ansible_managed }}
+{{ verdaccio_datadir }}/verdaccio.log {
+  weekly
+  rotate 8
+  missingok
+  compress
+  copytruncate
+  sharedscripts
+  postrotate
+    /bin/kill -SIGUSR2 $(systemctl show --property MainPID --value verdaccio.service)
+  endscript
+}
+
+
