@@ -10,6 +10,12 @@
   user:
     name: verdaccio
 
+- name: resolve npm config path
+  command: npm config get prefix 
+  register: npm_config_prefix_resolve
+
+- set_fact: npm_config_prefix="{{ npm_config_prefix_resolve.stdout }}"
+
 - name: deploy verdaccio systemd unit
   template:
     src: verdaccio.service.j2
