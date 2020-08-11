@@ -11,7 +11,7 @@
     name: verdaccio
 
 - name: resolve npm config path
-  command: npm config get prefix 
+  command: npm config get prefix --no-update-notifier
   register: npm_config_prefix_resolve
 
 - set_fact: npm_config_prefix="{{ npm_config_prefix_resolve.stdout }}"
