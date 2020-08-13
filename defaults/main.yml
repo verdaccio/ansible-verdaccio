@@ -34,3 +34,5 @@ verdaccio_packages_defaults:
     unpublish: $authenticated
   proxy:
     - npmjs
+
+npm_config_prefix: /usr/local
