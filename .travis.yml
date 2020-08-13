@@ -13,10 +13,11 @@ env:
     - MOLECULE_DISTRO: ubuntu1604
     - MOLECULE_DISTRO: debian10
     - MOLECULE_DISTRO: debian9
+    - MOLECULE_DISTRO: fedora30
 
 install:
   # Install test dependencies.
-  - pip install "molecule==2.22" docker
+  - pip install molecule docker
 
 before_script:
   # Use actual Ansible Galaxy role name for the project directory.
@@ -30,3 +31,4 @@ script:
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  
