@@ -5,7 +5,7 @@ Description=verdaccio Service
 Type=simple
 User=verdaccio
 WorkingDirectory={{ verdaccio_datadir }}
-ExecStart=/usr/local/bin/verdaccio -c {{ verdaccio_configdir }}/verdaccio.yml
+ExecStart={{ npm_config_prefix }}/bin/verdaccio -c {{ verdaccio_configdir }}/verdaccio.yml
 
 [Install]
 WantedBy=multi-user.target

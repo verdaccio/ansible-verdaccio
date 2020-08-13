@@ -10,6 +10,19 @@
   user:
     name: verdaccio
 
+- name: resolve npm config path
+  command: npm config get prefix --no-update-notifier
+  register: npm_config_prefix_resolve
+  changed_when: false
+  ignore_errors: true
+
+- name: setup npm_config_prefix
+  set_fact: npm_config_prefix = "{{ npm_config_prefix_resolve.stdout }}"
+  when: >
+    (npm_config_prefix_resolve.rc == 0) and 
+    ("FAILED" not in npm_config_prefix_resolve.stderr) and 
+    (npm_config_prefix_resolve.stdout != '')
+  
 - name: deploy verdaccio systemd unit
   template:
     src: verdaccio.service.j2
