@@ -18,11 +18,7 @@ web:
   sort_packages: {{ verdaccio_web_sort_packages }}
 
 auth:
-  htpasswd:
-    file: {{ verdaccio_authenticate_file_location }}
-    # Maximum amount of users allowed to register, defaults to "+inf".
-    # You can set this to -1 to disable registration.
-    max_users: {{ verdaccio_authenticate_max_users }}
+  {{ verdaccio_auth | to_nice_yaml(width=80, indent=2) | indent(2) }}
 
 # a list of other known repositories we can talk to
 uplinks:

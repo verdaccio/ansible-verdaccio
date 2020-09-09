@@ -2,13 +2,22 @@
 verdaccio_version: ''
 verdaccio_configdir: '/home/verdaccio/verdaccio'
 verdaccio_datadir: '/home/verdaccio/verdaccio'
+verdaccio_plugins:    # Must be a list of name/version for the plugins
+# For example:
+#  - name: verdaccio-ldap
+#    version: 4.2.0
+#  - name: verdaccio-groupnames
+#    version: 1.0.4-1
+verdaccio_pluginsdir: "{{verdaccio_datadir}}/plugins"
 verdaccio_web_title: 'Verdaccio'
 verdaccio_web_gravatar: false
 verdaccio_web_sort_packages: asc
 verdaccio_listen_address: 0.0.0.0
 verdaccio_listen_port: 4873
-verdaccio_authenticate_file_location: "{{ verdaccio_datadir }}/htpasswd"
-verdaccio_authenticate_max_users: +inf
+verdaccio_auth:
+  htpasswd:
+    file: "{{ verdaccio_datadir }}/htpasswd"
+    max_users: +inf
 
 verdaccio_uplinks:
   npmjs:
