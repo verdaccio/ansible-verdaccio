@@ -27,3 +27,4 @@ dependencies:
   - src: geerlingguy.nodejs
     version: 5.1.1
     name: geerlingguy.nodejs
+    become: true
