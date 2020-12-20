@@ -3,5 +3,8 @@
   hosts: all
   become: true
 
+  vars:
+    nodejs_install_npm_user: root
+
   roles:
-    - role: verdaccio.verdaccio
+    - role: ansible-verdaccio
