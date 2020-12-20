@@ -13,54 +13,47 @@
     (npm_config_prefix_resolve.stdout | length > 0)
 
 - block:
-  - name: verdaccio installed
-    npm:
-      name: verdaccio
-      version: "{{ verdaccio_version | default(omit) }}"
-      global: true
-    notify: restart verdaccio
+    - name: verdaccio installed
+      npm:
+        name: verdaccio
+        version: "{{ verdaccio_version | default(omit) }}"
+        global: true
+      notify: restart verdaccio
 
-  - name: verdaccio user created
-    user:
-      name: verdaccio
-  
-  - name: deploy verdaccio systemd unit
-    template:
-      src: verdaccio.service.j2
-      dest: /etc/systemd/system/verdaccio.service
-      mode: 0600
-    notify: systemd daemon-reload
-  
-  - name: verdaccio service enabled
-    systemd:
-      name: verdaccio
-      enabled: true
-      state: started
-  
-  - name: verdaccio directories creation
-    file:
-      path: "{{ item }}"
-      state: directory
-      owner: verdaccio
-      mode: 0755
-    loop:
-      - "{{ verdaccio_datadir }}"
-      - "{{ verdaccio_configdir }}"
-  
-  - name: config deployed
-    template:
-      src: config.j2
-      dest: "{{ verdaccio_configdir }}/verdaccio.yml"
-      owner: verdaccio
-      mode: 0600
-    notify: restart verdaccio
-  
-  - name: install logrotate script
-    template:
-      src: logrotate.j2
-      dest: /etc/logrotate.d/verdaccio
-      owner: root
-      mode: 0644
+    - name: verdaccio user created
+      user:
+        name: verdaccio
+
+    - name: deploy verdaccio systemd unit
+      template:
+        src: verdaccio.service.j2
+        dest: /etc/systemd/system/verdaccio.service
+        mode: 0600
+      notify: systemd daemon-reload
+
+    - name: verdaccio service enabled
+      systemd:
+        name: verdaccio
+        enabled: true
+        state: started
+
+    - name: verdaccio directories creation
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: verdaccio
+        mode: 0755
+      loop:
+        - "{{ verdaccio_datadir }}"
+        - "{{ verdaccio_configdir }}"
+
+    - name: config deployed
+      template:
+        src: config.j2
+        dest: "{{ verdaccio_configdir }}/verdaccio.yml"
+        owner: verdaccio
+        mode: 0600
+      notify: restart verdaccio
   become: true
 
 - name: verdaccio plugins installed

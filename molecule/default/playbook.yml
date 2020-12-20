@@ -5,6 +5,7 @@
 
   vars:
     nodejs_install_npm_user: root
+    verdaccio_systemd_state: stopped
 
   pre_tasks:
     - name: Update apt cache.
